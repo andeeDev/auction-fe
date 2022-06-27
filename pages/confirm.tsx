@@ -1,12 +1,22 @@
 import ReactCodeInput from 'react-code-input';
-import { useState } from 'react';
+import { ChangeEvent, useState } from 'react';
+import { LoginRequest } from '../utils/interfaces';
+import { useConfirmMutation } from '../logic/services/fetchProducts';
+import { setCredentials } from '../logic/authSlice';
+import { useDispatch } from 'react-redux';
+import { useRouter } from 'next/router';
 
 const CORRECT_PIN_CODE = '1111';
 
 export default function Confirm() {
+    const dispatch = useDispatch();
+    const { push } = useRouter();
+
     const [isPinCodeValid, setIsPinCodeValid] = useState(true);
     const [pinCode, setPinCode] = useState('');
     const [btnIsPressed, setBtnIsPressed] = useState(false);
+
+    const [confirm, { isLoading, isError }] = useConfirmMutation();
 
     const checkPinCode = () => {
         const isPinCodeValid = pinCode === CORRECT_PIN_CODE;
@@ -16,9 +26,30 @@ export default function Confirm() {
         if (!isPinCodeValid) setPinCode('');
     };
 
+    const [email, setEmail] = useState('');
+
+    const handleEmail = ({
+                             target: { value },
+                         }: ChangeEvent<HTMLInputElement>) => setEmail(value);
+
     const handlePinChange = pinCode => {
         setPinCode(pinCode);
         setBtnIsPressed(false);
+    };
+
+    const confirmAccount = async (event) => {
+        event.preventDefault();
+        try {
+            const result = await confirm({ email, code: pinCode });
+            console.log(result);
+            if (result.data) {
+                dispatch(setCredentials(result.data));
+                return await push('/');
+            }
+
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     const props = {
@@ -42,6 +73,10 @@ export default function Confirm() {
         <div className={'unauthorized-background'}>
             <form className={'unauthorized-form'}>
                 <div className={'flex justify-center mb-4'}>
+                    <input className={'p-2 rounded border'} onChange={handleEmail} type={'text'} name={'email'}
+                           placeholder={'Enter email'} />
+                </div>
+                <div className={'flex justify-center mb-4'}>
                     <ReactCodeInput
                         type='number'
                         isValid={isPinCodeValid}
@@ -52,7 +87,7 @@ export default function Confirm() {
                         name={'code'}
                         {...props} />
                 </div>
-                <button className='button' type='submit'>Confirm your account</button>
+                <button className='button' type='submit' onClick={confirmAccount}>Confirm your account</button>
             </form>
         </div>
     );
