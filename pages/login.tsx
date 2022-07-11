@@ -36,7 +36,7 @@ export default function Login() {
         event.preventDefault();
         try {
             const result = await login(formState);
-            if (result.data) {
+            if ('data' in result) {
                 dispatch(setCredentials(result.data));
                 return await push(Routes.root);
             }
