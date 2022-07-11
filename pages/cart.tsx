@@ -12,7 +12,6 @@ export default function Cart() {
     const cart: CartItem[] = useSelector(selectCart);
 
     const isUserExists: boolean = useSelector(selectUserExists);
-    console.log('isUserExists', isUserExists);
 
     const dispatch = useDispatch();
     const { push } = useRouter();
@@ -31,10 +30,9 @@ export default function Cart() {
         const products = cart.map((cartItem: CartItem) => {
             return { amount: cartItem.amount, productId: cartItem.product.id };
         });
-        const data = await createOrder({ products });
-        console.log(data);
-        if (data.data) {
-            dispatch(clearCart(data.data));
+        await createOrder({ products });
+        if (!isError) {
+            dispatch(clearCart());
             return await push(Routes.orders);
         }
     };

@@ -21,7 +21,7 @@ const slice = createSlice({
         setCredentials: (
             state,
             { payload: { id, email, name, isVerified, accessToken } }:
-                PayloadAction<{ id: number; email: string; name: string | null; isVerified: boolean; accessToken: string }>,
+                PayloadAction<{ id: number; email: string; name: string | null; isVerified: boolean; accessToken?: string }>,
         ) => {
             state.id = id;
             state.email = email;

@@ -23,12 +23,11 @@ export default function Register() {
         setFormState((prev) => ({ ...prev, [name]: value }));
 
     const handleRegister = async () => {
-
         event.preventDefault();
         try {
             const result = await register(formState);
             console.log('result', result);
-            if (result.data) {
+            if ('data' in result) {
                 dispatch(setCredentials(result.data));
                 return await push(Routes.confirm);
             }

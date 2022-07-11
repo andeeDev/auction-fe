@@ -1,7 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
-import { ConfirmRequest, LoginRequest, UserResponse } from '../../utils/interfaces';
-import { REHYDRATE } from 'redux-persist/es/constants';
+import {
+    ConfirmRequest, CreateOrderRequest, CreateOrderResponse,
+    LoginRequest, OrderHistoryResponse,
+    UserLoginResponse,
+    UserRegisterResponse,
+} from '../../utils/interfaces';
 
 interface Product {
     id: string;
@@ -39,35 +43,35 @@ export const shopApi = createApi({
             getSingleProduct: builder.query<Product, string>({
                 query: (id) => `products/${id}`,
             }),
-            getOrderHistory: builder.query<any, any>({
+            getOrderHistory: builder.query<OrderHistoryResponse[], any>({
                 query: () => `orders`,
-                providesTags: (result, error, arg) =>
+                providesTags: (result) =>
                     result
                         ? [...result.map(({ id }) => ({ type: 'Orders' as const, id })), 'Orders']
                         : ['Orders'],
             }),
-            login: builder.mutation<UserResponse, LoginRequest>({
+            login: builder.mutation<UserLoginResponse, LoginRequest>({
                 query: (credentials) => ({
                     url: 'auth/login',
                     method: 'POST',
                     body: credentials,
                 }),
             }),
-            confirm: builder.mutation<UserResponse, ConfirmRequest>({
+            confirm: builder.mutation<UserLoginResponse, ConfirmRequest>({
                 query: (credentials) => ({
                     url: 'auth/account/confirm',
                     method: 'POST',
                     body: credentials,
                 }),
             }),
-            register: builder.mutation<UserResponse, LoginRequest>({
+            register: builder.mutation<UserRegisterResponse, LoginRequest>({
                 query: (credentials) => ({
                     url: 'auth/register',
                     method: 'POST',
                     body: credentials,
                 }),
             }),
-            createOrder: builder.mutation<any, any>({
+            createOrder: builder.mutation<CreateOrderResponse, CreateOrderRequest>({
                 query: (data) => ({
                     url: '/orders',
                     method: 'POST',

@@ -1,30 +1,27 @@
 import ReactCodeInput from 'react-code-input';
 import { ChangeEvent, useState } from 'react';
-import { LoginRequest } from '../utils/interfaces';
 import { useConfirmMutation } from '../logic/services/fetchProducts';
 import { setCredentials } from '../logic/authSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 
-const CORRECT_PIN_CODE = '1111';
-
 export default function Confirm() {
     const dispatch = useDispatch();
     const { push } = useRouter();
 
-    const [isPinCodeValid, setIsPinCodeValid] = useState(true);
+    //const [isPinCodeValid, setIsPinCodeValid] = useState(true);
     const [pinCode, setPinCode] = useState('');
-    const [btnIsPressed, setBtnIsPressed] = useState(false);
+    //const [btnIsPressed, setBtnIsPressed] = useState(false);
 
     const [confirm, { isLoading, isError }] = useConfirmMutation();
 
-    const checkPinCode = () => {
-        const isPinCodeValid = pinCode === CORRECT_PIN_CODE;
+    /*   const checkPinCode = () => {
+           const isPinCodeValid = pinCode === CORRECT_PIN_CODE;
 
-        setBtnIsPressed(true);
-        setIsPinCodeValid(isPinCodeValid);
-        if (!isPinCodeValid) setPinCode('');
-    };
+           setBtnIsPressed(true);
+           setIsPinCodeValid(isPinCodeValid);
+           if (!isPinCodeValid) setPinCode('');
+       };*/
 
     const [email, setEmail] = useState('');
 
@@ -34,7 +31,7 @@ export default function Confirm() {
 
     const handlePinChange = pinCode => {
         setPinCode(pinCode);
-        setBtnIsPressed(false);
+        // setBtnIsPressed(false);
     };
 
     const confirmAccount = async (event) => {
@@ -42,7 +39,7 @@ export default function Confirm() {
         try {
             const result = await confirm({ email, code: pinCode });
             console.log(result);
-            if (result.data) {
+            if ('data' in result) {
                 dispatch(setCredentials(result.data));
                 return await push('/');
             }
@@ -79,7 +76,7 @@ export default function Confirm() {
                 <div className={'flex justify-center mb-4'}>
                     <ReactCodeInput
                         type='number'
-                        isValid={isPinCodeValid}
+                        // isValid={isPinCodeValid}
                         fields={4}
                         onChange={handlePinChange}
                         value={pinCode}
