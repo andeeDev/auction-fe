@@ -4,7 +4,7 @@ import { selectCurrentUser } from '../../logic/authSlice';
 import { Routes } from '../../utils/Routes';
 import Link from 'next/link';
 
-export function PrivateRoute({ children, href }) {
+export default function PrivateRoute({ children, href }) {
     const user = useSelector(selectCurrentUser);
 
     const isVerified = (): boolean => user.isVerified;
