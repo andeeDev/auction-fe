@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Routes } from '../../../utils/Routes';
-import { PrivateRoute } from '../PrivateRoute';
+import PrivateRoute from '../PrivateRoute';
 
 export default function Header() {
     return (
