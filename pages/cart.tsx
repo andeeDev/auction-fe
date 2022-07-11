@@ -5,7 +5,7 @@ import { useCreateOrderMutation } from '../logic/services/fetchProducts';
 import { Routes } from '../utils/Routes';
 import Loader from './components/Loader/Loader';
 import { useRouter } from 'next/router';
-import { PrivateRoute } from './components/PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 import { selectUserExists } from '../logic/authSlice';
 
 export default function Cart() {
