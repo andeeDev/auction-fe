@@ -6,6 +6,7 @@ import { LoginRequest } from '../utils/interfaces';
 import { setCredentials } from '../logic/authSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 export default function Register() {
     const dispatch = useDispatch();
@@ -26,7 +27,6 @@ export default function Register() {
         event.preventDefault();
         try {
             const result = await register(formState);
-            console.log('result', result);
             if ('data' in result) {
                 dispatch(setCredentials(result.data));
                 return await push(Routes.confirm);
@@ -34,7 +34,7 @@ export default function Register() {
             // handleErrorRequest(result);
         } catch (err) {
             // setErrorMessage('Something went wrong');
-            console.log(err);
+            toast(err.message);
         }
     };
 

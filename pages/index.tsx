@@ -2,6 +2,7 @@ import Products from './components/Products/Products';
 import CategoryBar from './components/CategoryBar';
 import { useFetchProductsQuery } from '../logic/services/fetchProducts';
 import Loader from './components/Loader/Loader';
+import ErrorComponent from './components/ErrorComponent';
 
 export default function Home() {
     const { data, isError, isLoading } = useFetchProductsQuery('');
@@ -11,7 +12,7 @@ export default function Home() {
     }
 
     if (isError) {
-        return <span>Error</span>;
+        return <ErrorComponent />;
     }
 
     return (

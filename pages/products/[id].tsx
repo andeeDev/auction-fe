@@ -4,6 +4,7 @@ import { useGetSingleProductQuery } from '../../logic/services/fetchProducts';
 import { useRouter } from 'next/router';
 import Loader from '../components/Loader/Loader';
 import ProductButton from '../components/ProductButton';
+import ErrorComponent from '../components/ErrorComponent';
 
 
 export default function SingleProduct() {
@@ -16,7 +17,7 @@ export default function SingleProduct() {
     }
 
     if (isError) {
-        return <span>Error</span>;
+        return <ErrorComponent />;
     }
 
 
@@ -29,7 +30,8 @@ export default function SingleProduct() {
                     <div>
                         <div className={'flex gap-8 '}>
                             <Image width={200} height={200}
-                                   src={'https://m.media-amazon.com/images/I/31QVBbn69oL._AC_SX342_.jpg'} />
+                                   alt={product.title}
+                                   src={product.mainImg} />
                             <div className={'flex flex-col gap-4 ml-8'}>
                                 <div className={'flex gap-4'}>
                                     <span>{product.title}</span>

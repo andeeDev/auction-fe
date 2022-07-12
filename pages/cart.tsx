@@ -7,6 +7,7 @@ import Loader from './components/Loader/Loader';
 import { useRouter } from 'next/router';
 import PrivateRoute from './components/PrivateRoute';
 import { selectUserExists } from '../logic/authSlice';
+import { toast } from 'react-toastify';
 
 export default function Cart() {
     const cart: CartItem[] = useSelector(selectCart);
@@ -23,7 +24,7 @@ export default function Cart() {
     }
 
     if (isError) {
-        return <span>Error</span>;
+        toast('Toasted');
     }
 
     const createOrderRequest = async () => {

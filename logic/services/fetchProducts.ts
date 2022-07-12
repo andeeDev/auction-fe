@@ -2,17 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
 import {
     ConfirmRequest, CreateOrderRequest, CreateOrderResponse,
-    LoginRequest, OrderHistoryResponse,
+    LoginRequest, OrderHistoryResponse, IProduct,
     UserLoginResponse,
     UserRegisterResponse,
 } from '../../utils/interfaces';
 
-interface Product {
-    id: string;
-    title: string;
-    description: string;
-    price: number;
-}
 
 // Define a service using a base URL and expected endpoints
 export const shopApi = createApi({
@@ -31,16 +25,16 @@ export const shopApi = createApi({
             },
         }),
         endpoints: (builder) => ({
-            fetchProducts: builder.query<Product[], string>({
+            fetchProducts: builder.query<IProduct[], string>({
                 query: () => `products`,
             }),
             getCategories: builder.query<any, string>({
                 query: () => `categories`,
             }),
-            getCategoryProducts: builder.query<Product[], string>({
+            getCategoryProducts: builder.query<IProduct[], string>({
                 query: (id) => `categories/${id}/products`,
             }),
-            getSingleProduct: builder.query<Product, string>({
+            getSingleProduct: builder.query<IProduct, string>({
                 query: (id) => `products/${id}`,
             }),
             getOrderHistory: builder.query<OrderHistoryResponse[], any>({

@@ -2,13 +2,16 @@
   "extends": [
     "next/core-web-vitals",
     "prettier",
-    //"eslint:recommended",
+    "eslint:recommended",
     "plugin:tailwindcss/recommended"
   ],
   "plugins": [
     "tailwindcss"
   ],
   "rules": {
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "no-debugger": "error",
+    "no-console": "error",
+    "no-alert": "error"
   }
 }

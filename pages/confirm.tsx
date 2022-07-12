@@ -4,6 +4,7 @@ import { useConfirmMutation } from '../logic/services/fetchProducts';
 import { setCredentials } from '../logic/authSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 export default function Confirm() {
     const dispatch = useDispatch();
@@ -38,14 +39,12 @@ export default function Confirm() {
         event.preventDefault();
         try {
             const result = await confirm({ email, code: pinCode });
-            console.log(result);
             if ('data' in result) {
                 dispatch(setCredentials(result.data));
                 return await push('/');
             }
-
         } catch (e) {
-            console.log(e);
+            toast('Some error' + e.message);
         }
     };
 

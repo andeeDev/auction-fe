@@ -5,7 +5,7 @@ import { IProduct } from '../../../utils/interfaces';
 
 export default function ProductRow({ cartItem }) {
     const dispatch = useDispatch();
-    const { title, price } = cartItem.product;
+    const { title, price, mainImg } = cartItem.product;
 
     const increaseProduct = (product: IProduct) => () => {
         dispatch(increaseProductCount(product));
@@ -23,7 +23,8 @@ export default function ProductRow({ cartItem }) {
     return <div className={'flex justify-between items-center my-4 w-full rounded light-shadow'}>
         <div className={'flex items-center'}>
             <div className={'p-4'}>
-                <Image width={75} height={75} src='https://m.media-amazon.com/images/I/31QVBbn69oL._AC_SX342_.jpg' />
+                <Image width={75} height={75} src={mainImg}
+                       alt={title} />
             </div>
             <div className={'flex flex-col'}>
                 <span>{title}</span>

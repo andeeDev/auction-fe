@@ -1,6 +1,7 @@
 import { useGetOrderHistoryQuery } from '../logic/services/fetchProducts';
 import Loader from './components/Loader/Loader';
 import OrderRow from './components/OrderRow';
+import ErrorComponent from './components/ErrorComponent';
 
 export default function Orders() {
 
@@ -11,7 +12,7 @@ export default function Orders() {
     }
 
     if (isError) {
-        return <span>Error</span>;
+        return <ErrorComponent />;
     }
 
 

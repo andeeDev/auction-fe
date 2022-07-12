@@ -7,7 +7,7 @@ export default function Header() {
         <header className={'w-full border'}>
             <nav className={'flex justify-between px-3 m-auto my-3 max-w-5xl '}>
                 <div className={'flex'}>
-                    <Link href={Routes.root}>
+                    <Link href={Routes.root} passHref>
                         <div className={'flex cursor-pointer'}>
                             <svg className='w-8 h-8' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'
                                  stroke='currentColor' strokeWidth={2}>
@@ -30,7 +30,7 @@ export default function Header() {
                         </PrivateRoute>
                     </li>
                     <li className={'ml-2'}>
-                        <Link href={Routes.cart}>
+                        <Link href={Routes.cart} passHref>
                             <svg className='w-8 h-8 cursor-pointer' fill='none' stroke='currentColor'
                                  viewBox='0 0 24 24'
                                  xmlns='http://www.w3.org/2000/svg'>

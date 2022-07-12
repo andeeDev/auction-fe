@@ -43,7 +43,6 @@ export default function Login() {
             handleErrorRequest(result);
         } catch (err) {
             setErrorMessage('Something went wrong');
-            console.log(err);
         }
     };
 
@@ -71,6 +70,7 @@ export default function Login() {
 
                 <button
                     className={'p-3 mb-4 w-full text-xl font-bold bg-amber-400 hover:bg-amber-300 rounded sm:p-1 sm:text-base '}
+                    disabled={isLoading}
                     onClick={loginRequest}>Log In
                 </button>
 

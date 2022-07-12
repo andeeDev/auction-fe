@@ -1,10 +1,3 @@
-export interface User {
-    id: string;
-    email: string;
-    name?: string;
-    isVerified: boolean;
-}
-
 export interface UserLoginResponse {
     id: number;
     email: string;
@@ -69,6 +62,7 @@ export interface ICategory {
 export interface IProduct {
     id: string;
     title: string;
+    mainImg: string;
     description: string;
     categoryId: string;
     price: number;

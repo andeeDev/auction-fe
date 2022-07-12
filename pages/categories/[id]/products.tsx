@@ -3,6 +3,7 @@ import Products from '../../components/Products/Products';
 import { useGetCategoryProductsQuery } from '../../../logic/services/fetchProducts';
 import Loader from '../../components/Loader/Loader';
 import { useRouter } from 'next/router';
+import ErrorComponent from '../../components/ErrorComponent';
 
 export default function CategoryProducts() {
     const router = useRouter();
@@ -10,7 +11,7 @@ export default function CategoryProducts() {
     const { data, isError, isLoading } = useGetCategoryProductsQuery(router.query.id as string);
 
     if (isError) {
-        return <span>Error</span>;
+        return <ErrorComponent />;
     }
 
     if (isLoading) {

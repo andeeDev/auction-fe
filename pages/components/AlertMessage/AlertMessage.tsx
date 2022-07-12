@@ -10,7 +10,7 @@ export default function AlertMessage({ isError, errorMessage }) {
         if (errMessage !== errorMessage) {
             setErrorMessage(errorMessage);
         }
-    }, [isError, errorMessage]);
+    }, [isError, errorMessage, hasError, errMessage]);
 
     const isHiddenClass: string = hasError ? '' : ' hidden';
     const classes = 'relative py-3 px-4 text-red-700 bg-red-100 rounded border border-red-400 ' + isHiddenClass;
