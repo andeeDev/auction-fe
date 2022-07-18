@@ -1,6 +1,6 @@
 import CategoryBar from '../../components/CategoryBar';
 import Products from '../../components/Products/Products';
-import { useGetCategoryProductsQuery } from '../../../logic/services/fetchProducts';
+import { useGetCategoryProductsQuery } from '../../../logic/services/services';
 import Loader from '../../components/Loader/Loader';
 import { useRouter } from 'next/router';
 import ErrorComponent from '../../components/ErrorComponent';

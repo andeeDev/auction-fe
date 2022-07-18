@@ -1,17 +1,19 @@
 import Link from 'next/link';
 import { Routes } from '../utils/Routes';
-import { useRegisterMutation } from '../logic/services/fetchProducts';
+import { useRegisterMutation } from '../logic/services/services';
 import { ChangeEvent, useState } from 'react';
 import { LoginRequest } from '../utils/interfaces';
 import { setCredentials } from '../logic/authSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import AlertMessage from './components/AlertMessage/AlertMessage';
 
 export default function Register() {
     const dispatch = useDispatch();
     const { push } = useRouter();
     const [register, { isLoading, isError }] = useRegisterMutation();
+    const [errorMessage, setErrorMessage] = useState('');
 
     const [formState, setFormState] = useState<LoginRequest>({
         email: '',
@@ -43,6 +45,7 @@ export default function Register() {
             <form
                 className={'unauthorized-form'}
             >
+                <AlertMessage errorMessage={errorMessage} isError={isError} />
                 <h3 className={'mb-4 text-3xl font-bold sm:mb-2 sm:text-base'}>Sign-up</h3>
                 <label htmlFor='email' className={'flex flex-col mb-2 text-xl font-semibold sm:text-sm'}>
                     Email

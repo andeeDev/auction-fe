@@ -1,10 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { RootState } from '../store';
 import {
-    ConfirmRequest, CreateOrderRequest, CreateOrderResponse,
-    LoginRequest, OrderHistoryResponse, IProduct,
+    ConfirmRequest,
+    CreateOrderRequest,
+    CreateOrderResponse,
+    LoginRequest,
+    OrderHistoryResponse,
+    IProduct,
     UserLoginResponse,
     UserRegisterResponse,
+    ISendCodeMessageRequest,
+    ISendCodeMessageResponse,
+    IObtainTokenRequest, IObtainTokenResponse, IResetPasswordResponse, IResetPasswordRequest,
 } from '../../utils/interfaces';
 
 
@@ -73,6 +80,27 @@ export const shopApi = createApi({
                 }),
                 invalidatesTags: ['Orders'],
             }),
+            sendResetPasswordCode: builder.mutation<ISendCodeMessageResponse, ISendCodeMessageRequest>({
+                query: (data) => ({
+                    url: '/password/verification',
+                    method: 'POST',
+                    body: data,
+                }),
+            }),
+            getPasswordResetToken: builder.mutation<IObtainTokenResponse, IObtainTokenRequest>({
+                query: (data) => ({
+                    url: '/password/token',
+                    method: 'POST',
+                    body: data,
+                }),
+            }),
+            resetPassword: builder.mutation<IResetPasswordResponse, IResetPasswordRequest>({
+                query: (data) => ({
+                    url: '/password/reset',
+                    method: 'POST',
+                    body: data,
+                }),
+            }),
             protected: builder.mutation({
                 query: () => 'protected',
             }),
@@ -86,6 +114,9 @@ export const {
     useLoginMutation,
     useConfirmMutation,
     useCreateOrderMutation,
+    useSendResetPasswordCodeMutation,
+    useGetPasswordResetTokenMutation,
+    useResetPasswordMutation,
     useProtectedMutation,
     useRegisterMutation,
     useGetOrderHistoryQuery,

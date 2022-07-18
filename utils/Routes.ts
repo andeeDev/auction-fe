@@ -8,4 +8,5 @@ export const Routes = {
     singleProduct: '/products',
     categories: '/categories',
     profile: '/profile',
+    reset: '/reset/password',
 };

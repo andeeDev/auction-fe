@@ -1,7 +1,7 @@
 import { CartItem, clearCart, selectCart } from '../logic/orderSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductRow from './components/ProductRow/ProductRow';
-import { useCreateOrderMutation } from '../logic/services/fetchProducts';
+import { useCreateOrderMutation } from '../logic/services/services';
 import { Routes } from '../utils/Routes';
 import Loader from './components/Loader/Loader';
 import { useRouter } from 'next/router';

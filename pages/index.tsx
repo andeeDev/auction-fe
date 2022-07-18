@@ -1,6 +1,6 @@
 import Products from './components/Products/Products';
 import CategoryBar from './components/CategoryBar';
-import { useFetchProductsQuery } from '../logic/services/fetchProducts';
+import { useFetchProductsQuery } from '../logic/services/services';
 import Loader from './components/Loader/Loader';
 import ErrorComponent from './components/ErrorComponent';
 

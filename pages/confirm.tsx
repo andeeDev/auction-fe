@@ -1,6 +1,6 @@
 import ReactCodeInput from 'react-code-input';
 import { ChangeEvent, useState } from 'react';
-import { useConfirmMutation } from '../logic/services/fetchProducts';
+import { useConfirmMutation } from '../logic/services/services';
 import { setCredentials } from '../logic/authSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';

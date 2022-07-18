@@ -1,4 +1,4 @@
-import { useGetCategoriesQuery } from '../../logic/services/fetchProducts';
+import { useGetCategoriesQuery } from '../../logic/services/services';
 import Loader from './Loader/Loader';
 import Link from 'next/link';
 import { Routes } from '../../utils/Routes';

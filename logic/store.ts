@@ -1,13 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { shopApi } from './services/fetchProducts';
+import { shopApi } from './services/services';
 import auth from '../logic/authSlice';
 import cart from '../logic/orderSlice';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 import type { MiddlewareAPI, Middleware } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 
 
 const persistConfig = {
@@ -22,7 +21,7 @@ export const rtkQueryErrorLogger: Middleware =
         if (isRejectedWithValue(action)) {
             console.warn('We got a rejected action!');
             //toast.warn({ title: 'Async error!', message: action.error.data.message });
-            toast(`Some troubles occurred, try again later!`);
+            //toast(`Some troubles occurred, try again later!`);
         }
 
         return next(action);

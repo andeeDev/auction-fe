@@ -69,3 +69,33 @@ export interface IProduct {
     category: ICategory;
 }
 
+export interface ISendCodeMessageRequest {
+    email: string;
+}
+
+export interface ISendCodeMessageResponse {
+    message: string;
+}
+
+export interface IObtainTokenRequest {
+    email: string;
+    code: string;
+}
+
+export interface IObtainTokenResponse {
+    id: number;
+    token: string;
+    isValid: boolean;
+    userId: number;
+}
+
+export interface IResetPasswordRequest {
+    email: string;
+    token: string;
+    password: string;
+}
+
+export interface IResetPasswordResponse {
+    message: string;
+}
+

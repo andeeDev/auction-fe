@@ -1,4 +1,4 @@
-import { useGetOrderHistoryQuery } from '../logic/services/fetchProducts';
+import { useGetOrderHistoryQuery } from '../logic/services/services';
 import Loader from './components/Loader/Loader';
 import OrderRow from './components/OrderRow';
 import ErrorComponent from './components/ErrorComponent';

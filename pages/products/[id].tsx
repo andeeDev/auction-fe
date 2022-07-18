@@ -1,6 +1,6 @@
 import CategoryBar from '../components/CategoryBar';
 import Image from 'next/image';
-import { useGetSingleProductQuery } from '../../logic/services/fetchProducts';
+import { useGetSingleProductQuery } from '../../logic/services/services';
 import { useRouter } from 'next/router';
 import Loader from '../components/Loader/Loader';
 import ProductButton from '../components/ProductButton';

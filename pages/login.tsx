@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from 'react';
 import { setCredentials } from '../logic/authSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
-import { useLoginMutation } from '../logic/services/fetchProducts';
+import { useLoginMutation } from '../logic/services/services';
 import AlertMessage from './components/AlertMessage/AlertMessage';
 import { LoginRequest } from '../utils/interfaces';
 import { Routes } from '../utils/Routes';
@@ -32,7 +32,7 @@ export default function Login() {
         setErrorMessage(resMessage);
     };
 
-    const loginRequest = async (event) => {
+    const loginRequest = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         try {
             const result = await login(formState);
@@ -86,6 +86,13 @@ export default function Login() {
                     <Link href={Routes.confirm}>
                         <a className={'pl-1 text-sky-300'}>here</a>
                     </Link> to continue
+                </p>
+
+                <p className={'inline-block pl-2 mb-2 text-lg sm:text-sm'}>
+                    Change password
+                    <Link href={Routes.reset}>
+                        <a className={'pl-1 text-sky-300'}>here</a>
+                    </Link>
                 </p>
             </form>
         </div>
