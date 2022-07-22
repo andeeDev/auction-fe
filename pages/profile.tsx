@@ -8,11 +8,11 @@ export default function Profile() {
     const { push } = useRouter();
     const user = useSelector(selectCurrentUser);
 
-    const logoutUser = () => {
+    const logoutUser = async () => {
         dispatch(logout());
-        push(Routes.root);
+        await push(Routes.root);
     };
-    
+
     return (
         <>
             <div className={'unauthorized-background'}>
@@ -21,17 +21,28 @@ export default function Profile() {
                     <label>
                         Name
                         <input
-                            className='py-2 pl-2 mb-2 w-full text-sm leading-6 text-slate-900 rounded-md focus:outline-none ring-1 focus:ring-2 ring-slate-200 focus:ring-blue-500 shadow-sm appearance-none'
-                            type='text' name={'name'} aria-label={user.name} value={user.name ? user.name : ''}
-                            disabled={true} />
+                            className='mb-2 w-full appearance-none rounded-md py-2 pl-2 text-sm leading-6 text-slate-900 shadow-sm ring-1 ring-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                            type='text'
+                            name={'name'}
+                            aria-label={user.name}
+                            value={user.name ? user.name : ''}
+                            disabled={true}
+                        />
                     </label>
                     <label>
                         Email
                         <input
-                            className='py-2 pl-2 mb-4 w-full text-sm leading-6 text-slate-900 rounded-md focus:outline-none ring-1 focus:ring-2 ring-slate-200 focus:ring-blue-500 shadow-sm appearance-none'
-                            type='text' name={'email'} aria-label={user.email} value={user.email} disabled={true} />
+                            className='mb-4 w-full appearance-none rounded-md py-2 pl-2 text-sm leading-6 text-slate-900 shadow-sm ring-1 ring-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500'
+                            type='text'
+                            name={'email'}
+                            aria-label={user.email}
+                            value={user.email}
+                            disabled={true}
+                        />
                     </label>
-                    <button className={'p-1 bg-blue-100 rounded'} onClick={logoutUser}>Log out</button>
+                    <button className={'rounded bg-blue-100 p-1'} onClick={logoutUser}>
+                        Log out
+                    </button>
                 </div>
             </div>
         </>

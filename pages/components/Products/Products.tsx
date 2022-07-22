@@ -1,9 +1,9 @@
 import Product from './Product';
-import { IProduct } from '../../../utils/interfaces';
+import { IProduct, ProductsProps } from '../../../utils/interfaces';
 import { Routes } from '../../../utils/Routes';
 
 
-export default function Products({ products }) {
+export default function Products({ products }: ProductsProps) {
     return (
         <div className={'flex flex-wrap gap-4'}>
             {

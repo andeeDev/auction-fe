@@ -1,3 +1,5 @@
+import { ChangeEvent, ReactNode } from 'react';
+
 export interface UserLoginResponse {
     id: number;
     email: string;
@@ -39,7 +41,7 @@ export interface CreateOrderRequest {
     products: CartProductInfo[];
 }
 
-interface CartProductInfo {
+export interface CartProductInfo {
     amount: number;
     productId: string;
 }
@@ -97,5 +99,64 @@ export interface IResetPasswordRequest {
 
 export interface IResetPasswordResponse {
     message: string;
+}
+
+export interface IPasswordData {
+    email: string;
+    code: string;
+    token: string;
+    password: string;
+}
+
+export interface GenericPasswordComponentProps {
+    styles: string;
+    labelStyles: string;
+    formData: IPasswordData;
+    handleInputData: (input: string) => (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export interface SendCodeStepProps extends GenericPasswordComponentProps {
+    onSuccess: () => void;
+}
+
+export interface ExportTokenProps extends GenericPasswordComponentProps {
+    setToken: (value: string) => void;
+    onSuccess: () => void;
+    children: ReactNode;
+}
+
+export interface ResetPasswordStepProps extends GenericPasswordComponentProps {
+    children: ReactNode;
+}
+
+export interface ProductsProps {
+    products: IProduct[];
+}
+
+export interface ProductProps {
+    product: IProduct;
+    href: string;
+}
+
+export interface PrivateRouteProps {
+    href: string;
+    children: ReactNode;
+}
+
+export interface ProductButtonProps {
+    product: IProduct;
+}
+
+export interface CartItem {
+    product: IProduct;
+    amount: number;
+}
+
+export interface OrderRowProps {
+    cartItem: CartItem;
+}
+
+export interface ProductRowProps {
+    cartItem: CartItem;
 }
 

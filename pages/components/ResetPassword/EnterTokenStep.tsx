@@ -4,6 +4,7 @@ import {
 import { toast } from 'react-toastify';
 import { Messages } from '../../../utils/Messages';
 import { ErrorHelper } from '../../../utils/ErrorHelper';
+import { ExportTokenProps } from '../../../utils/interfaces';
 
 export default function EnterTokenStep({
                                            styles,
@@ -13,7 +14,7 @@ export default function EnterTokenStep({
                                            onSuccess,
                                            setToken,
                                            children,
-                                       }) {
+                                       }: ExportTokenProps) {
     const [getPasswordResetToken] = useGetPasswordResetTokenMutation();
     const sendResetToken = async () => {
         try {
@@ -37,7 +38,7 @@ export default function EnterTokenStep({
                     Enter your code
                 </label>
                 <input
-                    className='py-2 pl-2 mb-2 w-full text-sm leading-6 text-slate-900 rounded-md focus:outline-none ring-1 focus:ring-2 ring-slate-200 focus:ring-blue-500 shadow-sm appearance-none'
+                    className='mb-2 w-full appearance-none rounded-md py-2 pl-2 text-sm leading-6 text-slate-900 shadow-sm ring-1 ring-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500'
                     type='text' name={'code'} aria-label={'code'} placeholder={'Code'}
                     onChange={handleInputData('code')}
                     value={formData.code} />

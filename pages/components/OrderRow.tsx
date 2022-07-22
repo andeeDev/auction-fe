@@ -1,13 +1,14 @@
 import Image from 'next/image';
+import { OrderRowProps } from '../../utils/interfaces';
 
-export default function OrderRow({ cartItem }) {
+export default function OrderRow({ cartItem }: OrderRowProps) {
     const { title, price, mainImg } = cartItem.product;
 
     const totalPrice: string = (cartItem.product.price * cartItem.amount).toFixed(2);
 
     return <div className={' mb-2 w-full rounded border '}>
-        <div className={'flex justify-between items-center'}>
-            <div className={'flex justify-center items-center'}>
+        <div className={'flex items-center justify-between'}>
+            <div className={'flex items-center justify-center'}>
                 <div className={'p-4'}>
                     <Image width={75} height={75}
                            src={mainImg} alt={title} />

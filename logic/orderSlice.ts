@@ -1,11 +1,6 @@
-import { createSlice, current, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-import { IProduct } from '../utils/interfaces';
-
-export interface CartItem {
-    product: IProduct;
-    amount: number;
-}
+import { CartItem, IProduct } from '../utils/interfaces';
 
 const slice = createSlice({
     name: 'cart',
@@ -54,8 +49,6 @@ const slice = createSlice({
         clearCart(state) {
             state.cart = [];
         },
-    },
-    extraReducers: (builder) => {
     },
 });
 

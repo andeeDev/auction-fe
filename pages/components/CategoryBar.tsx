@@ -14,14 +14,14 @@ export default function CategoryBar() {
     }
 
     return <aside className={'col-span-1 m-4 text-sm '}>
-        <nav className={'flex flex-col rounded-md mild-shadow'}>
+        <nav className={'mild-shadow flex flex-col rounded-md'}>
             <ul>
                 {data.map(({ id, title }) =>
                     (
-                        <li key={id} className={'border-b cursor-pointer'}><Link href={{
+                        <li key={id} className={'cursor-pointer border-b'}><Link href={{
                             pathname: `${Routes.categories}/[id]${Routes.singleProduct}`,
                             query: { id: id },
-                        }}><a className={'box-border block p-2 w-full hover:bg-slate-100'}>{title}</a></Link></li>
+                        }}><a className={'box-border block w-full p-2 hover:bg-slate-100'}>{title}</a></Link></li>
                     ),
                 )}
             </ul>

@@ -1,4 +1,4 @@
-import { CartItem, clearCart, selectCart } from '../logic/orderSlice';
+import { clearCart, selectCart } from '../logic/orderSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import ProductRow from './components/ProductRow/ProductRow';
 import { useCreateOrderMutation } from '../logic/services/services';
@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import PrivateRoute from './components/PrivateRoute';
 import { selectUserExists } from '../logic/authSlice';
 import { toast } from 'react-toastify';
+import { CartItem, CartProductInfo } from '../utils/interfaces';
 
 export default function Cart() {
     const cart: CartItem[] = useSelector(selectCart);
@@ -28,7 +29,7 @@ export default function Cart() {
     }
 
     const createOrderRequest = async () => {
-        const products = cart.map((cartItem: CartItem) => {
+        const products: CartProductInfo[] = cart.map((cartItem: CartItem) => {
             return { amount: cartItem.amount, productId: cartItem.product.id };
         });
         await createOrder({ products });
@@ -47,7 +48,7 @@ export default function Cart() {
             <div className={'m-6'}>
                 <div className={'flex justify-between'}>
                     <span className={'p-2 text-lg'}>Cart Items</span>
-                    <span className={'flex items-baseline p-2 text-white bg-sky-500 hover:bg-sky-600 rounded'}>
+                    <span className={'flex items-baseline rounded bg-sky-500 p-2 text-white hover:bg-sky-600'}>
                         <PrivateRoute href={Routes.orders}>Previous orders</PrivateRoute>
                     </span>
                 </div>
@@ -55,17 +56,17 @@ export default function Cart() {
                         <div className={'rounded'}>
                             {cart.map((product: CartItem) => <ProductRow key={product.product.id} cartItem={product} />)}
                         </div>
-                        <div className={'flex justify-between mb-4 text-lg font-semibold'}>
+                        <div className={'mb-4 flex justify-between text-lg font-semibold'}>
                             <div>Total Price</div>
                             <div>$ {totalPrice}</div>
                         </div>
                         <button disabled={!isUserExists}
                                 onClick={createOrderRequest}
-                                className={'p-3 w-full text-xl font-bold bg-amber-400 hover:bg-amber-300 disabled:bg-slate-300 rounded sm:p-1 sm:text-base'}>
+                                className={'w-full rounded bg-amber-400 p-3 text-xl font-bold hover:bg-amber-300 disabled:bg-slate-300 sm:p-1 sm:text-base'}>
                             Make an order
                         </button>
                     </div> :
-                    <div className={'mt-4 mb-8 text-xl font-semibold text-center'}>You haven't add any thing to the
+                    <div className={'mt-4 mb-8 text-center text-xl font-semibold'}>You haven't add any thing to the
                         card</div>}
                 <div>
                 </div>

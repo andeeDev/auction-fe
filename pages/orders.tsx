@@ -20,21 +20,21 @@ export default function Orders() {
         <div className={'m-auto max-w-5xl'}>
             <div className={'m-6'}>
                 {orders.length === 0 &&
-                    <span className={'block m-auto w-64 text-lg font-bold'}>Sorry. You don't have orders yet. Please by a product to see here your orders</span>}
+                    <span className={'m-auto block w-64 text-lg font-bold'}>Sorry. You don't have orders yet. Please by a product to see here your orders</span>}
                 {
                     orders.map((order) => {
                         const price = order.orderProducts.reduce((acc, item) => {
                             return acc + item.product.price * item.amount;
                         }, 0).toFixed(2);
                         return (
-                            <div key={order.id} className={'p-4 mb-12 rounded-lg light-shadow'}>
+                            <div key={order.id} className={'light-shadow mb-12 rounded-lg p-4'}>
                                 <div className={'rounded'}>
                                     {order.orderProducts.map((cartItem) => {
                                         return <OrderRow key={order.id + cartItem.orderId + cartItem.product.id}
                                                          cartItem={cartItem} />;
                                     })}
                                 </div>
-                                <div className={'flex justify-between mb-4 text-lg font-semibold'}>
+                                <div className={'mb-4 flex justify-between text-lg font-semibold'}>
                                     <div>Total Price</div>
                                     <div>$ {price}</div>
                                 </div>

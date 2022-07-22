@@ -23,16 +23,16 @@ export default function SingleProduct() {
 
     return (
         <div>
-            <div className={'grid grid-cols-6 gap-4 justify-center m-auto max-w-5xl'}>
+            <div className={'m-auto grid max-w-5xl grid-cols-6 justify-center gap-4'}>
                 <CategoryBar />
-                <div className={'col-span-5 self-end mt-4'}>
-                    <h2 className={'mb-8 text-xl font-bold text-center'}>Product information</h2>
+                <div className={'col-span-5 mt-4 self-end'}>
+                    <h2 className={'mb-8 text-center text-xl font-bold'}>Product information</h2>
                     <div>
                         <div className={'flex gap-8 '}>
                             <Image width={200} height={200}
                                    alt={product.title}
                                    src={product.mainImg} />
-                            <div className={'flex flex-col gap-4 ml-8'}>
+                            <div className={'ml-8 flex flex-col gap-4'}>
                                 <div className={'flex gap-4'}>
                                     <span>{product.title}</span>
                                     <span>$ {product.price}</span>

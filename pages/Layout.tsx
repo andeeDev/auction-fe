@@ -7,7 +7,7 @@ import { persistStore } from 'redux-persist';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-let persistor = persistStore(store);
+const persistor = persistStore(store);
 
 
 export default function Layout({ children }) {

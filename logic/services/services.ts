@@ -11,7 +11,7 @@ import {
     UserRegisterResponse,
     ISendCodeMessageRequest,
     ISendCodeMessageResponse,
-    IObtainTokenRequest, IObtainTokenResponse, IResetPasswordResponse, IResetPasswordRequest,
+    IObtainTokenRequest, IObtainTokenResponse, IResetPasswordResponse, IResetPasswordRequest, ICategory,
 } from '../../utils/interfaces';
 
 
@@ -35,7 +35,7 @@ export const shopApi = createApi({
             fetchProducts: builder.query<IProduct[], string>({
                 query: () => `products`,
             }),
-            getCategories: builder.query<any, string>({
+            getCategories: builder.query<ICategory[], string>({
                 query: () => `categories`,
             }),
             getCategoryProducts: builder.query<IProduct[], string>({

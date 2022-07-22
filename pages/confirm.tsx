@@ -1,10 +1,12 @@
 import ReactCodeInput from 'react-code-input';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useConfirmMutation } from '../logic/services/services';
 import { setCredentials } from '../logic/authSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import { Messages } from '../utils/Messages';
+import { ErrorHelper } from '../utils/ErrorHelper';
 
 export default function Confirm() {
     const dispatch = useDispatch();
@@ -14,7 +16,7 @@ export default function Confirm() {
     const [pinCode, setPinCode] = useState('');
     //const [btnIsPressed, setBtnIsPressed] = useState(false);
 
-    const [confirm, { isLoading, isError }] = useConfirmMutation();
+    const [confirm] = useConfirmMutation();
 
     /*   const checkPinCode = () => {
            const isPinCodeValid = pinCode === CORRECT_PIN_CODE;
@@ -30,12 +32,12 @@ export default function Confirm() {
                              target: { value },
                          }: ChangeEvent<HTMLInputElement>) => setEmail(value);
 
-    const handlePinChange = pinCode => {
+    const handlePinChange = (pinCode: string) => {
         setPinCode(pinCode);
         // setBtnIsPressed(false);
     };
 
-    const confirmAccount = async (event) => {
+    const confirmAccount = async (event: FormEvent<HTMLElement>) => {
         event.preventDefault();
         try {
             const result = await confirm({ email, code: pinCode });
@@ -43,8 +45,11 @@ export default function Confirm() {
                 dispatch(setCredentials(result.data));
                 return await push('/');
             }
+            if ('error' in result) {
+                toast(ErrorHelper.getResponseError(result));
+            }
         } catch (e) {
-            toast('Some error' + e.message);
+            toast(Messages.SomethingWentWrong);
         }
     };
 
@@ -68,11 +73,11 @@ export default function Confirm() {
     return (
         <div className={'unauthorized-background'}>
             <form className={'unauthorized-form'}>
-                <div className={'flex justify-center mb-4'}>
-                    <input className={'p-2 rounded border'} onChange={handleEmail} type={'text'} name={'email'}
+                <div className={'mb-4 flex justify-center'}>
+                    <input className={'rounded border p-2'} onChange={handleEmail} type={'text'} name={'email'}
                            placeholder={'Enter email'} />
                 </div>
-                <div className={'flex justify-center mb-4'}>
+                <div className={'mb-4 flex justify-center'}>
                     <ReactCodeInput
                         type='number'
                         // isValid={isPinCodeValid}

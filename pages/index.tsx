@@ -17,9 +17,9 @@ export default function Home() {
 
     return (
         <div>
-            <div className={'grid grid-cols-6 gap-4 justify-center m-auto max-w-5xl'}>
+            <div className={'m-auto grid max-w-5xl grid-cols-6 justify-center gap-4'}>
                 <CategoryBar />
-                <div className={'col-span-5 self-end mt-4'}>
+                <div className={'col-span-5 mt-4 self-end'}>
                     <Products products={data} />
                 </div>
             </div>
