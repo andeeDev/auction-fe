@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactNode } from 'react';
+import { ChangeEvent, FormEvent, ReactNode } from 'react';
 
 export interface UserLoginResponse {
     id: number;
@@ -133,9 +133,15 @@ export interface ProductsProps {
     products: IProduct[];
 }
 
+export interface AuctionProductsProps {
+    products: IAuctionProduct[];
+}
+
 export interface ProductProps {
-    product: IProduct;
+    title: string;
+    mainImg: string;
     href: string;
+    children: ReactNode;
 }
 
 export interface PrivateRouteProps {
@@ -144,7 +150,11 @@ export interface PrivateRouteProps {
 }
 
 export interface ProductButtonProps {
-    product: IProduct;
+    displayLink?: boolean;
+    link: string;
+    linkText: string;
+    handle?: () => void;
+    children: ReactNode;
 }
 
 export interface CartItem {
@@ -160,3 +170,42 @@ export interface ProductRowProps {
     cartItem: CartItem;
 }
 
+export interface IAuctionProduct {
+    id: string;
+    title: string;
+    description: string;
+    startPrice: number;
+    mainImg: string;
+    createdAt: string;
+    sellTil: string;
+    creatorId: number;
+    bids: Bid[];
+    buyerId?: number;
+}
+
+export interface Bid {
+    id: string;
+    price: number;
+    userId: number;
+    auctionProductId: number;
+}
+
+export interface CreateBidRequest {
+    id: string;
+    price: number;
+}
+
+export interface CreateBidResponse {
+    id: string;
+    price: number;
+    userId: number;
+    auctionProductId: string;
+}
+
+export interface BidInputProps {
+    isProductSold: boolean;
+    createdByUserProduct: boolean;
+    bidPrice: string;
+    changeInputType: (e: FormEvent<HTMLInputElement>) => void;
+    makeBid: () => void;
+}

@@ -9,4 +9,6 @@ export const Routes = {
     categories: '/categories',
     profile: '/profile',
     reset: '/reset/password',
+    auction: '/auction',
+    auctionProduct: '/auction/product',
 };

@@ -1,10 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import ProductButton from '../ProductButton';
 import { ProductProps } from '../../../utils/interfaces';
 
-export default function Product({ product, href }: ProductProps) {
-    const { title, price, mainImg } = product;
+export default function ProductCard({ title, mainImg, href, children }: ProductProps) {
 
     return (
         <div className={'light-shadow flex w-40 flex-col rounded-md p-2 hover:bg-slate-200'}>
@@ -19,8 +17,7 @@ export default function Product({ product, href }: ProductProps) {
                 <span className={'cursor-pointer pb-2 text-base'}>{title}</span>
             </Link>
             <div className={'flex justify-between py-1'}>
-                <span className={'inline-flex items-center text-base'}>$ {price}</span>
-                <ProductButton product={product} />
+                {children}
             </div>
         </div>
     );

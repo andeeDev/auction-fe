@@ -3,14 +3,22 @@ import Image from 'next/image';
 import { useGetSingleProductQuery } from '../../logic/services/services';
 import { useRouter } from 'next/router';
 import Loader from '../components/Loader/Loader';
-import ProductButton from '../components/ProductButton';
+import CardButton from '../components/CardButton';
 import ErrorComponent from '../components/ErrorComponent';
+import { Routes } from '../../utils/Routes';
+import { CartItem, IProduct } from '../../utils/interfaces';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProduct, selectCart } from '../../logic/orderSlice';
 
 
 export default function SingleProduct() {
     const router = useRouter();
+    const dispatch = useDispatch();
+
+    const cart: CartItem[] = useSelector(selectCart);
 
     const { data: product, isError, isLoading } = useGetSingleProductQuery(router.query.id as string);
+
 
     if (isLoading) {
         return <Loader />;
@@ -20,6 +28,11 @@ export default function SingleProduct() {
         return <ErrorComponent />;
     }
 
+    const addProductToCart = (product: IProduct) => () => {
+        dispatch(addProduct(product));
+    };
+    const { id, title, mainImg, price, description } = product;
+    const isAddedToCart = cart.some(({ product: cartProduct }: CartItem) => cartProduct.id === id);
 
     return (
         <div>
@@ -30,17 +43,22 @@ export default function SingleProduct() {
                     <div>
                         <div className={'flex gap-8 '}>
                             <Image width={200} height={200}
-                                   alt={product.title}
-                                   src={product.mainImg} />
+                                   alt={title}
+                                   src={mainImg} />
                             <div className={'ml-8 flex flex-col gap-4'}>
                                 <div className={'flex gap-4'}>
-                                    <span>{product.title}</span>
-                                    <span>$ {product.price}</span>
+                                    <span>{title}</span>
+                                    <span>$ {price}</span>
                                 </div>
-                                <ProductButton product={product} />
+                                <CardButton
+                                    displayLink={isAddedToCart}
+                                    link={Routes.cart}
+                                    linkText={'Check cart'}
+                                    handle={addProductToCart(product)}
+                                >Buy</CardButton>
                                 <div>
                                     <h3 className={'mb-2 text-sm uppercase'}>Description</h3>
-                                    <p className={'text-sm'}>{product.description}</p>
+                                    <p className={'text-sm'}>{description}</p>
                                 </div>
                             </div>
                         </div>

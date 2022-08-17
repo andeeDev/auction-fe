@@ -17,6 +17,12 @@ export default function Header() {
                             <h2 className={'ml-1 text-xl font-bold'}>Web store</h2>
                         </div>
                     </Link>
+                    <div className={'ml-4 cursor-pointer'}>
+                        <Link href={Routes.auction}>
+                            <span className={'text-xl font-bold'}>Auction</span>
+                        </Link>
+
+                    </div>
                 </div>
                 <ul className={'flex'}>
                     <li>

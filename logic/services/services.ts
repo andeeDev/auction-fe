@@ -11,14 +11,19 @@ import {
     UserRegisterResponse,
     ISendCodeMessageRequest,
     ISendCodeMessageResponse,
-    IObtainTokenRequest, IObtainTokenResponse, IResetPasswordResponse, IResetPasswordRequest, ICategory,
+    IObtainTokenRequest,
+    IObtainTokenResponse,
+    IResetPasswordResponse,
+    IResetPasswordRequest,
+    ICategory,
+    IAuctionProduct, CreateBidRequest, CreateBidResponse,
 } from '../../utils/interfaces';
 
 
 // Define a service using a base URL and expected endpoints
 export const shopApi = createApi({
         reducerPath: 'shopApi',
-        tagTypes: ['Orders'],
+        tagTypes: ['Orders', 'AuctionProducts', 'SingleAuctionProduct'],
         baseQuery: fetchBaseQuery({
             baseUrl: 'http://localhost:3001/',
             prepareHeaders: (headers, { getState }) => {
@@ -43,6 +48,14 @@ export const shopApi = createApi({
             }),
             getSingleProduct: builder.query<IProduct, string>({
                 query: (id) => `products/${id}`,
+            }),
+            getAuctionProducts: builder.query<IAuctionProduct[], string>({
+                query: () => `/auction/products`,
+                providesTags: ['AuctionProducts'],
+            }),
+            getAuctionProduct: builder.query<IAuctionProduct, string>({
+                query: (id) => `auction/products/${id}`,
+                providesTags: ['SingleAuctionProduct'],
             }),
             getOrderHistory: builder.query<OrderHistoryResponse[], any>({
                 query: () => `orders`,
@@ -101,6 +114,15 @@ export const shopApi = createApi({
                     body: data,
                 }),
             }),
+            makeBid: builder.mutation<CreateBidResponse, CreateBidRequest>({
+                query: ({ id, ...data }) => ({
+                    url: `/auction/products/${id}/bids`,
+                    method: 'POST',
+                    body: data,
+                }),
+                // transformResponse: (response: { data: CreateBidResponse }, meta, arg) => response.data,
+                invalidatesTags: ['AuctionProducts', 'SingleAuctionProduct'],
+            }),
             protected: builder.mutation({
                 query: () => 'protected',
             }),
@@ -124,4 +146,7 @@ export const {
     useGetCategoriesQuery,
     useGetCategoryProductsQuery,
     useGetSingleProductQuery,
+    useGetAuctionProductQuery,
+    useGetAuctionProductsQuery,
+    useMakeBidMutation,
 } = shopApi;

@@ -43,7 +43,6 @@ export default function Register() {
     return (
         <div className={'unauthorized-background'}>
             <form className={'unauthorized-form'}>
-                {/*<AlertMessage errorMessage={errorMessage} isError={isError} />*/}
                 <h3 className={'mb-4 text-3xl font-bold sm:mb-2 sm:text-base'}>Sign-up</h3>
                 <label htmlFor='email' className={'mb-2 flex flex-col text-xl font-semibold sm:text-sm'}>
                     Email
