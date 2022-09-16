@@ -4,7 +4,7 @@ import {
 import { toast } from 'react-toastify';
 import { Messages } from '../../../utils/Messages';
 import { ErrorHelper } from '../../../utils/ErrorHelper';
-import { ExportTokenProps } from '../../../utils/interfaces';
+import { ExportTokenProps } from '../../../utils/types/props';
 
 export default function EnterTokenStep({
                                            styles,

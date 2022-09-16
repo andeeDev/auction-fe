@@ -6,9 +6,9 @@ import Loader from '../components/Loader/Loader';
 import CardButton from '../components/CardButton';
 import ErrorComponent from '../components/ErrorComponent';
 import { Routes } from '../../utils/Routes';
-import { CartItem, IProduct } from '../../utils/interfaces';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct, selectCart } from '../../logic/orderSlice';
+import { CartItem, IProduct } from '../../utils/types/types';
 
 
 export default function SingleProduct() {

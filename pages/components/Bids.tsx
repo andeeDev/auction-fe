@@ -1,5 +1,4 @@
-import { BidsProps } from '../../utils/componentsInterfaces';
-
+import { BidsProps } from '../../utils/types/props';
 
 export default function Bids({ bids }: BidsProps) {
     if (bids.length === 0) {

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { OrderRowProps } from '../../utils/interfaces';
+import { OrderRowProps } from '../../utils/types/props';
 
 export default function OrderRow({ cartItem }: OrderRowProps) {
     const { title, price, mainImg } = cartItem.product;

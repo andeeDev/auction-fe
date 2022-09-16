@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { decreaseProductCount, deleteFromCart, increaseProductCount } from '../../../logic/orderSlice';
-import { IProduct, ProductRowProps } from '../../../utils/interfaces';
+import { ProductRowProps } from '../../../utils/types/props';
+import { IProduct } from '../../../utils/types/types';
 
 export default function ProductRow({ cartItem }: ProductRowProps) {
     const dispatch = useDispatch();

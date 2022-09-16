@@ -1,7 +1,7 @@
-import { TimerProps } from '../../../../utils/interfaces';
 import { useEffect, useState } from 'react';
 import ExpiredNotice from './ExpiredNotice';
 import Counter from './Counter';
+import { TimerProps } from '../../../../utils/types/props';
 
 const useCountDown = (dateTime: string) => {
     const countDownDate: number = new Date(dateTime).getTime();
@@ -31,8 +31,6 @@ const getReturnValues = (countDown) => {
 
 export default function CountDownTimer({ dateTime }: TimerProps) {
     const [days, hours, minutes, seconds] = useCountDown(dateTime);
-
-    console.log('days', days + hours + minutes + seconds);
 
     return days + hours + minutes + seconds <= 0 ? <ExpiredNotice /> :
         <Counter

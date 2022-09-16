@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ProductProps } from '../../../utils/interfaces';
+import { ProductProps } from '../../../utils/types/props';
 
 export default function ProductCard({ title, mainImg, href, children }: ProductProps) {
 

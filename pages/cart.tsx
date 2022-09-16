@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProductRow from './components/ProductRow/ProductRow';
 import { useCreateOrderMutation } from '../logic/services/services';
 import { Routes } from '../utils/Routes';
-import Loader from './components/Loader/Loader';
 import { useRouter } from 'next/router';
 import PrivateRoute from './components/PrivateRoute';
-import { selectUserExists, setCredentials } from '../logic/authSlice';
+import { selectUserExists } from '../logic/authSlice';
 import { toast } from 'react-toastify';
-import { CartItem, CartProductInfo } from '../utils/interfaces';
 import { Messages } from '../utils/Messages';
+import { CartItem, CartProductInfo } from '../utils/types/types';
 
 export default function Cart() {
     const cart: CartItem[] = useSelector(selectCart);

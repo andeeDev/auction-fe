@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { AuctionProductCreateFormRequest } from '../../utils/types/api';
 
 
 export default function CreateAuctionForm() {
@@ -23,7 +24,7 @@ export default function CreateAuctionForm() {
 
     const { push } = useRouter();
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register } = useForm();
 
     const [createAuctionProduct] = useCreateAuctionProductMutation();
 
@@ -41,7 +42,7 @@ export default function CreateAuctionForm() {
         setFormState((prev) => ({ ...prev, [name]: value }));
 
 
-    const getFormState = (): AuctionProductCreateForm => {
+    const getFormState = (): AuctionProductCreateFormRequest => {
         return {
             ...formState,
             startPrice: parseFloat(formState.startPrice),
@@ -86,7 +87,7 @@ export default function CreateAuctionForm() {
                     dateFormat='Pp'
                     name='sellTill'
                     id='sellTill'
-                    className={'rounded border border-gray-800 p-2 mb-2 text-xl sm:text-sm'}
+                    className={'mb-2 rounded border border-gray-800 p-2 text-xl sm:text-sm'}
         />
         <button className='button' type='submit' onClick={createProduct}>Create Product</button>
     </div>;

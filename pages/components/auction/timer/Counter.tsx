@@ -1,4 +1,4 @@
-import { CounterConfigProps } from '../../../../utils/interfaces';
+import { CounterConfigProps } from '../../../../utils/types/props';
 
 export default function Counter({ config }: CounterConfigProps) {
     const { days, hours, minutes, seconds } = config;

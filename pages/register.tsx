@@ -2,13 +2,13 @@ import Link from 'next/link';
 import { Routes } from '../utils/Routes';
 import { useRegisterMutation } from '../logic/services/services';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { LoginRequest } from '../utils/interfaces';
 import { setCredentials } from '../logic/authSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import { ErrorHelper } from '../utils/ErrorHelper';
 import { Messages } from '../utils/Messages';
+import { LoginRequest } from '../utils/types/api';
 
 export default function Register() {
     const dispatch = useDispatch();

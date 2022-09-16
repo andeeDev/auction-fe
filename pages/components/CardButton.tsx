@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { ProductButtonProps } from '../../utils/interfaces';
 import { cardButtonStyles } from '../../utils/styles';
+import { ProductButtonProps } from '../../utils/types/props';
 
 
 export default function CardButton({ displayLink = true, handle, link, linkText, children }: ProductButtonProps) {

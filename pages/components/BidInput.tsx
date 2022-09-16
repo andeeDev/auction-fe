@@ -1,5 +1,5 @@
-import { BidInputProps } from '../../utils/interfaces';
 import CountDownTimer from './auction/timer/CountDownTimer';
+import { BidInputProps } from '../../utils/types/props';
 
 export default function BidInput({
                                      isProductSold,

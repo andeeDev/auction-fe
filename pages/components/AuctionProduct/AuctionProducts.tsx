@@ -1,7 +1,8 @@
-import { AuctionProductsProps, IAuctionProduct } from '../../../utils/interfaces';
 import { Routes } from '../../../utils/Routes';
 import ProductCard from '../Products/ProductCard';
 import CardButton from '../CardButton';
+import { AuctionProductsProps } from '../../../utils/types/props';
+import { IAuctionProduct } from '../../../utils/types/types';
 
 
 export default function AuctionProducts({ products }: AuctionProductsProps) {

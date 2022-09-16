@@ -1,9 +1,10 @@
 import ProductCard from './ProductCard';
-import { CartItem, IProduct, ProductsProps } from '../../../utils/interfaces';
 import { Routes } from '../../../utils/Routes';
 import CardButton from '../CardButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct, selectCart } from '../../../logic/orderSlice';
+import { ProductsProps } from '../../../utils/types/props';
+import { CartItem, IProduct } from '../../../utils/types/types';
 
 
 export default function Products({ products }: ProductsProps) {

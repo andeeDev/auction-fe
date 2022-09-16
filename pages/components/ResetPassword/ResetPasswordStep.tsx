@@ -4,7 +4,7 @@ import { Messages } from '../../../utils/Messages';
 import { Routes } from '../../../utils/Routes';
 import { useRouter } from 'next/router';
 import { ErrorHelper } from '../../../utils/ErrorHelper';
-import { ResetPasswordStepProps } from '../../../utils/interfaces';
+import { ResetPasswordStepProps } from '../../../utils/types/props';
 
 export default function ResetPasswordStep({
                                               styles,
