@@ -28,8 +28,7 @@
      ],*/
     "react/no-unescaped-entities": "off",
     "linebreak-style": [
-      "error",
-      "windows"
+      "error", "unix"
     ],
     "no-debugger": "error",
     "no-console": "error",
