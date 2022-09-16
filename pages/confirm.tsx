@@ -12,19 +12,9 @@ export default function Confirm() {
     const dispatch = useDispatch();
     const { push } = useRouter();
 
-    //const [isPinCodeValid, setIsPinCodeValid] = useState(true);
     const [pinCode, setPinCode] = useState('');
-    //const [btnIsPressed, setBtnIsPressed] = useState(false);
 
     const [confirm] = useConfirmMutation();
-
-    /*   const checkPinCode = () => {
-           const isPinCodeValid = pinCode === CORRECT_PIN_CODE;
-
-           setBtnIsPressed(true);
-           setIsPinCodeValid(isPinCodeValid);
-           if (!isPinCodeValid) setPinCode('');
-       };*/
 
     const [email, setEmail] = useState('');
 
@@ -34,7 +24,6 @@ export default function Confirm() {
 
     const handlePinChange = (pinCode: string) => {
         setPinCode(pinCode);
-        // setBtnIsPressed(false);
     };
 
     const confirmAccount = async (event: FormEvent<HTMLElement>) => {

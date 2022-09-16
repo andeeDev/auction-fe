@@ -103,7 +103,8 @@ export default function AuctionProduct() {
                                 createdByUserProduct={createdByUserProduct()}
                                 bidPrice={bidPrice}
                                 changeInputType={changeInputType}
-                                makeBid={makeBid} />
+                                makeBid={makeBid}
+                                sellTil={sellTil} />
                             <div className={'ml-8 flex flex-col gap-4'}>
                                 <div className={'flex gap-4'}>
                                     <span>{title}</span>

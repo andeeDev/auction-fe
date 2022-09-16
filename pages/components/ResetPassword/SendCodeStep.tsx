@@ -2,7 +2,7 @@ import { useSendResetPasswordCodeMutation } from '../../../logic/services/servic
 import { toast } from 'react-toastify';
 import { Messages } from '../../../utils/Messages';
 import { ErrorHelper } from '../../../utils/ErrorHelper';
-import { SendCodeStepProps } from '../../../utils/interfaces';
+import { SendCodeStepProps } from '../../../utils/types/props';
 
 
 export default function SendCodeStep({ styles, labelStyles, onSuccess, formData, handleInputData }: SendCodeStepProps) {

@@ -1,4 +1,5 @@
 import { BidInputProps } from '../../utils/interfaces';
+import CountDownTimer from './auction/timer/CountDownTimer';
 
 export default function BidInput({
                                      isProductSold,
@@ -6,10 +7,12 @@ export default function BidInput({
                                      bidPrice,
                                      changeInputType,
                                      makeBid,
+                                     sellTil,
                                  }: BidInputProps) {
 
     return <div className={'ml-8'}>
         <h2 className={'mb-2 text-sm'}>Do you want to buy an item. Enter your price now</h2>
+        <CountDownTimer dateTime={sellTil} />
         <div
             className={'group relative flex w-full items-center justify-center'}>
             {

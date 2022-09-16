@@ -4,11 +4,11 @@ import { setCredentials } from '../logic/authSlice';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
 import { useLoginMutation } from '../logic/services/services';
-import { LoginRequest } from '../utils/interfaces';
 import { Routes } from '../utils/Routes';
 import { ErrorHelper } from '../utils/ErrorHelper';
 import { toast } from 'react-toastify';
 import { Messages } from '../utils/Messages';
+import { LoginRequest } from '../utils/types/api';
 
 export default function Login() {
     const dispatch = useDispatch();

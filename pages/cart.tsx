@@ -6,9 +6,10 @@ import { Routes } from '../utils/Routes';
 import Loader from './components/Loader/Loader';
 import { useRouter } from 'next/router';
 import PrivateRoute from './components/PrivateRoute';
-import { selectUserExists } from '../logic/authSlice';
+import { selectUserExists, setCredentials } from '../logic/authSlice';
 import { toast } from 'react-toastify';
 import { CartItem, CartProductInfo } from '../utils/interfaces';
+import { Messages } from '../utils/Messages';
 
 export default function Cart() {
     const cart: CartItem[] = useSelector(selectCart);
@@ -18,24 +19,19 @@ export default function Cart() {
     const dispatch = useDispatch();
     const { push } = useRouter();
 
-    const [createOrder, { isLoading, isError }] = useCreateOrderMutation();
-
-    if (isLoading) {
-        return <Loader />;
-    }
-
-    if (isError) {
-        toast('Toasted');
-    }
+    const [createOrder] = useCreateOrderMutation();
 
     const createOrderRequest = async () => {
         const products: CartProductInfo[] = cart.map((cartItem: CartItem) => {
             return { amount: cartItem.amount, productId: cartItem.product.id };
         });
-        await createOrder({ products });
-        if (!isError) {
+        const result = await createOrder({ products });
+        if ('data' in result) {
             dispatch(clearCart());
             return await push(Routes.orders);
+        }
+        if ('error' in result) {
+            toast(Messages.SuccessfullySent);
         }
     };
 

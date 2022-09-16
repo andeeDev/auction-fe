@@ -11,4 +11,5 @@ export const Routes = {
     reset: '/reset/password',
     auction: '/auction',
     auctionProduct: '/auction/product',
+    createAuctionProduct: '/auction/product/create',
 };

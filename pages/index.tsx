@@ -7,6 +7,7 @@ import ErrorComponent from './components/ErrorComponent';
 export default function Home() {
     const { data, isError, isLoading } = useFetchProductsQuery('');
 
+
     if (isLoading) {
         return <Loader />;
     }
