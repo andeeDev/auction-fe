@@ -1,3 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.unauthorized-background {
+    @apply flex justify-center items-center w-screen h-screen bg-slate-100;
+}
+
+.unauthorized-form {
+    @apply flex flex-col justify-center p-4 mx-3.5 w-full h-auto align-middle bg-white rounded border border-gray-800 sm:p-6 sm:w-80
+}
+
+.button {
+    @apply p-3 mb-4 w-full text-xl font-bold bg-amber-400 hover:bg-amber-300 rounded sm:p-1 sm:text-base;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+label {
+    display: block;
+}
+
+.light-shadow {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.mild-shadow {
+    box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+/*
 html,
 body {
   padding: 0;
@@ -14,3 +56,4 @@ a {
 * {
   box-sizing: border-box;
 }
+*/
